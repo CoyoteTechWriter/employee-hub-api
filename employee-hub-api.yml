@@ -1,0 +1,353 @@
+openapi: 3.0.2
+info:
+  title: Employee Hub API
+  version: "1.0"
+  description: This is an API to retrieve employee information. It contains endpoints for Employee identity, which basically means some examplary employee data and timeoff requests.
+  contact:
+    email: michalkolasinski86@gmail.com
+    name: Michal Kolasinski
+
+
+paths:
+  /identity-people:
+
+    get:
+      summary: Get employee
+      description: Getting employee data
+      tags:
+        - Employee identity
+      security:
+        - BearerAuth: []
+      
+      parameters:
+        - $ref: '#/components/parameters/employeeIdParam'
+
+        - $ref: '#/components/parameters/employeePhotoParam'
+        - $ref: '#/components/parameters/officeLocationParam'
+        - $ref: '#/components/parameters/employeePronounsParam'
+      responses:
+        '200':
+          description: Success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityPeople'
+        '400':
+          description: Bad Request!
+
+
+    post:
+      summary: Post employee
+      description: Post employee to the API based on request body
+      tags:
+        - Employee identity
+
+      requestBody:
+        $ref: '#/components/requestBodies/IdentityPeopleReqBod'
+      responses:
+        '201':
+          description: Posted successfuly!
+          headers:
+            File Location:
+              description: Location of the posted employee file
+              schema:
+                type: string
+                format: uri
+                example: https://example.com/employees/{employeeIdentityVar}
+        '400':
+          description: Bad Request!
+  /identity-people/{employeeIdParamPath}:
+    get:
+      summary: Get employees by Id
+      description: Retrieve employee information by identifying the Id
+      tags:
+        - Employee identity
+      parameters:
+        - $ref: '#/components/parameters/employeeIdParamPath'
+      responses:
+        '200':
+          description: Employee found!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityPeople'
+        '400':
+          description: Bad Request!
+
+  /identity-people/identity-people/{employeeIdParamPath}/reports:
+    get:
+      summary: Get employee reports 
+      description: Get employee reports by employee Id
+      tags:
+        - Employee identity
+      parameters:
+        - $ref: '#/components/parameters/employeeIdParamPath'
+      responses:
+        '200':
+          description: Employee found!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityPeopleReports'
+        '400':
+          description: Bad Request!
+
+  /timeoff/requests/:
+    get:
+      summary: retrieve timeoff requests
+      description: retrieve timeoff requests
+      tags:
+        - Timeoff
+  
+      parameters:
+        - $ref: '#/components/parameters/requestId'
+        - $ref: '#/components/parameters/timeoffStartDate'
+        - $ref: '#/components/parameters/timeoffFinnishDate'
+        - $ref: '#/components/parameters/timeoffType'
+        - $ref: '#/components/parameters/managerApproval'
+
+      responses:
+        '200':
+          description: Timeoff retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timeoff'
+        '400':
+          description: Bad Request!
+    post:
+      description: Post Timeoff request
+      summary: Posting timeoff requests
+      tags:
+        - Timeoff
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Timeoff'
+      responses:
+        '201':
+          description: Posted successfuly
+          headers:
+            File Location:
+              description: Location of the File
+              schema:
+                type: string
+                example: https://example.com/timeoff/requests/{timeoffId}
+        '400':
+          description: Bad Request!
+
+  /timeoff/requests/{requestIdParamPath}/:
+    get:
+      summary: Get request by Id
+      description: Get request by timeoff request id
+      tags:
+        - Timeoff
+      parameters:
+        - $ref: '#/components/parameters/requestIdParamPath'
+      responses:
+        '200':
+          description: Success!
+          content:
+            application/json:
+             schema:
+                $ref: '#/components/schemas/Timeoff'
+        '400':
+          description: Bad Request!
+    delete:
+      summary: Delete request by Id
+      description: Delete request by Id 
+      tags:
+        - Timeoff
+      parameters:
+        - $ref: '#/components/parameters/requestIdParamPath'
+      responses:
+        '204':
+          description: Request deleted!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timeoff'
+
+components:
+  schemas:
+    IdentityPeople:
+      type: object
+      properties:
+        employeeId:
+          type: string
+          pattern: ^\d{4}$
+          readOnly: true
+          example: 1234
+        employeePhoto:
+          format: uri
+          example: https://example.com/image_1.jpg
+        employeePronouns:
+          type: string
+          enum:
+            - he/him
+            - she/her
+            - they/them
+            - I do not wish to say
+        office_location:
+          type: string
+          enum:
+            - Katowice
+            - Phoenix
+            - Salt Lake City
+            - Choroszcz
+    IdentityPeopleReports:
+      allOf:
+        - $ref: '#/components/schemas/IdentityPeople'
+  
+  
+    Timeoff:
+      type: object
+      properties:
+        requestId:
+          type: string
+          pattern: ^\d{4}$
+          readOnly: true
+          example: 1234
+
+        timeoffStartDate:
+          type: string
+          format: date
+          example: "2025-05-15"
+        timeoffFinnishDate:
+          type: string
+          format: date
+          example: "2025-05-15"
+        timeoffType:
+          type: string
+          enum:
+            - Sick leave
+            - Holiday
+            - Wedding/Funeral
+          example: Sick leave
+        managerApproval:
+          type: string
+          enum:
+            - yes
+            - no
+          example: yes
+
+  parameters:
+    employeeIdParam:
+      name: employeeIdParam
+      in: query
+      required: false
+      schema:
+        type: string
+        pattern: ^\d{4}$
+        readOnly: true
+        example: 1234
+    employeeIdParamPath:
+      name: employeeIdParamPath
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: ^\d{4}$
+        example: 1234
+    employeePhotoParam:
+      name: employeePhotoParam
+      in: query
+      schema:
+        type: string
+        format: uri
+        example: https://example.com/image_1.jpg
+    employeePronounsParam: 
+      name: employeePronounsParam
+      in: query
+      schema:
+        type: string
+        enum:
+          - he/him
+          - she/her
+          - they/them
+          - I do not wish to say
+        example: she/her
+    officeLocationParam:
+      name: officeLocationParam
+      in: query
+      schema:
+        type: string
+        enum:
+          - Katowice
+          - Phoenix
+          - Salt Lake City
+          - Choroszcz
+        example: Katowice
+
+    requestId:
+      name: requestId
+      in: query
+      schema:
+        type: string
+        pattern: ^\d{4}$
+        readOnly: true
+        example: 1234
+    requestIdParamPath:
+      name: requestIdParamPath
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: ^\d{4}$
+        example: 1234
+    timeoffStartDate:
+      name: timeoffStartDate
+      in: query
+      schema:
+        type: string
+        format: date
+        example: "2025-05-15"
+    timeoffFinnishDate:
+      name: timeoffFinnishDate
+      in: query
+      schema:
+        type: string
+        format: date
+        example: "2025-05-15"
+    timeoffType:
+      name: timeoffType
+      in: query
+      schema:
+        type: string
+        enum:
+          - Sick leave
+          - Holiday
+          - Wedding/Funeral
+        example: Sick leave
+    managerApproval:
+      name: managerApproval
+      in: query
+      schema:
+        type: string
+        enum:
+          - yes
+          - no
+        example: yes
+  
+
+  requestBodies:
+    IdentityPeopleReqBod:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/IdentityPeople"
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: jwt
+security:
+  - BearerAuth: []
+
+
+servers:
+    - url: https://virtserver.swaggerhub.com/none-2ef-05d/employee-hub-api/1.0
+      description: A production server
