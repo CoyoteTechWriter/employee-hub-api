@@ -1,0 +1,10 @@
+name: officeLocationParam
+in: query
+schema:
+  type: string
+  enum:
+    - Katowice
+    - Phoenix
+    - Salt Lake City
+    - Choroszcz
+  example: Katowice

@@ -1,0 +1,10 @@
+name: employeePronounsParam
+in: query
+schema:
+  type: string
+  enum:
+    - he/him
+    - she/her
+    - they/them
+    - I do not wish to say
+  example: she/her

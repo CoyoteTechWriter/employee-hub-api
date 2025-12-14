@@ -1,0 +1,30 @@
+get:
+  summary: Get request by Id
+  description: Get request by timeoff request id
+  tags:
+    - Timeoff
+  parameters:
+    - $ref: ../components/parameters/requestIdParamPath.yml
+  responses:
+    '200':
+      description: Success!
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Timeoff.yml
+    '400':
+      description: Bad Request!
+delete:
+  summary: Delete request by Id
+  description: Delete request by Id
+  tags:
+    - Timeoff
+  parameters:
+    - $ref: ../components/parameters/requestIdParamPath.yml
+  responses:
+    '204':
+      description: Request deleted!
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Timeoff.yml

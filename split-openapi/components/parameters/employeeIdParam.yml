@@ -1,0 +1,8 @@
+name: employeeIdParam
+in: query
+required: false
+schema:
+  type: string
+  pattern: ^\d{4}$
+  readOnly: true
+  example: 1234

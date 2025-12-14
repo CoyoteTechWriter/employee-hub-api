@@ -1,0 +1,6 @@
+name: timeoffFinnishDate
+in: query
+schema:
+  type: string
+  format: date
+  example: '2025-05-15'
