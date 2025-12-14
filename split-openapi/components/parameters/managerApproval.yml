@@ -1,0 +1,8 @@
+name: managerApproval
+in: query
+schema:
+  type: string
+  enum:
+    - 'yes'
+    - 'no'
+  example: 'yes'

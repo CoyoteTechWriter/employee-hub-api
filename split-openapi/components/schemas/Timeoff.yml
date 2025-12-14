@@ -1,0 +1,28 @@
+type: object
+properties:
+  requestId:
+    type: string
+    pattern: ^\d{4}$
+    readOnly: true
+    example: 1234
+  timeoffStartDate:
+    type: string
+    format: date
+    example: '2025-05-15'
+  timeoffFinnishDate:
+    type: string
+    format: date
+    example: '2025-05-15'
+  timeoffType:
+    type: string
+    enum:
+      - Sick leave
+      - Holiday
+      - Wedding/Funeral
+    example: Sick leave
+  managerApproval:
+    type: string
+    enum:
+      - 'yes'
+      - 'no'
+    example: 'yes'
