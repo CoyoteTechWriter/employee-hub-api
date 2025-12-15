@@ -1,0 +1,22 @@
+employeeIdParam:
+  $ref: ./employeeIdParam.yaml
+employeeIdParamPath:
+  $ref: ./employeeIdParamPath.yaml
+employeePhotoParam:
+  $ref: ./employeePhotoParam.yaml
+employeePronounsParam:
+  $ref: ./employeePronounsParam.yaml
+officeLocationParam:
+  $ref: ./officeLocationParam.yaml
+requestId:
+  $ref: ./requestId.yaml
+requestIdParamPath:
+  $ref: ./requestIdParamPath.yaml
+timeoffStartDate:
+  $ref: ./timeoffStartDate.yaml
+timeoffFinnishDate:
+  $ref: ./timeoffFinnishDate.yaml
+timeoffType:
+  $ref: ./timeoffType.yaml
+managerApproval:
+  $ref: ./managerApproval.yaml

@@ -1,0 +1,6 @@
+IdentityPeople:
+  $ref: ./IdentityPeople.yaml
+IdentityPeopleReports:
+  $ref: ./IdentityPeopleReports.yaml
+Timeoff:
+  $ref: ./Timeoff.yaml

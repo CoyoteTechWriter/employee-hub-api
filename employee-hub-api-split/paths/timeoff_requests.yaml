@@ -1,33 +1,35 @@
 get:
   summary: retrieve timeoff requests
   description: retrieve timeoff requests
+  operationId: getTimeoffRequests
   tags:
     - Timeoff
   parameters:
-    - $ref: ../components/parameters/requestId.yml
-    - $ref: ../components/parameters/timeoffStartDate.yml
-    - $ref: ../components/parameters/timeoffFinnishDate.yml
-    - $ref: ../components/parameters/timeoffType.yml
-    - $ref: ../components/parameters/managerApproval.yml
+    - $ref: ../parameters/requestId.yaml
+    - $ref: ../parameters/timeoffStartDate.yaml
+    - $ref: ../parameters/timeoffFinnishDate.yaml
+    - $ref: ../parameters/timeoffType.yaml
+    - $ref: ../parameters/managerApproval.yaml
   responses:
     '200':
       description: Timeoff retrieved
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Timeoff.yml
+            $ref: ../schemas/Timeoff.yaml
     '400':
       description: Bad Request!
 post:
   description: Post Timeoff request
   summary: Posting timeoff requests
+  operationId: postTimeoffRequests
   tags:
     - Timeoff
   requestBody:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/Timeoff.yml
+          $ref: ../schemas/Timeoff.yaml
   responses:
     '201':
       description: Posted successfuly

@@ -1,0 +1,38 @@
+openapi: 3.0.2
+info:
+  title: Employee Hub API
+  version: '1.0'
+  description: >-
+    This is an API to retrieve employee information. It contains endpoints for
+    Employee identity, which basically means some examplary employee data and
+    timeoff requests.
+  contact:
+    email: michalkolasinski86@gmail.com
+    name: Michal Kolasinski
+servers:
+  - url: https://virtserver.swaggerhub.com/none-2ef-05d/employee-hub-api/1.0
+    description: A production server
+paths:
+  /identity-people:
+    $ref: ./paths/identity_people.yaml
+  /identity-people/{employeeIdParamPath}:
+    $ref: ./paths/identity_people_employeeIdParamPath_.yaml
+  /identity-people/identity-people/{employeeIdParamPath}/reports:
+    $ref: ./paths/identity_people_identity_people_employeeIdParamPath_reports.yaml
+  /timeoff/requests:
+    $ref: ./paths/timeoff_requests.yaml
+  /timeoff/requests/{requestIdParamPath}:
+    $ref: ./paths/timeoff_requests_requestIdParamPath_.yaml
+components:
+  schemas:
+    $ref: ./schemas/_index.yaml
+  parameters:
+    $ref: ./parameters/_index.yaml
+  responses: {}
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: jwt
+tags:
+  $ref: ./tags/_index.yaml
