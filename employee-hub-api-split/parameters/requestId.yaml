@@ -1,0 +1,7 @@
+name: requestId
+in: query
+schema:
+  type: string
+  pattern: ^\d{4}$
+  readOnly: true
+  example: '1234'

@@ -1,0 +1,7 @@
+name: requestIdParamPath
+in: path
+required: true
+schema:
+  type: string
+  pattern: ^\d{4}$
+  example: '1234'
