@@ -5,13 +5,13 @@ get:
   tags:
     - Employee identity
   parameters:
-    - $ref: ../parameters/employeeIdParamPath.yaml
+    - $ref: ../components/parameters/employeeIdParamPath.yml
   responses:
     '200':
       description: Employee found!
       content:
         application/json:
           schema:
-            $ref: ../schemas/IdentityPeopleReports.yaml
+            $ref: ../components/schemas/IdentityPeopleReports.yml
     '400':
       description: Bad Request!

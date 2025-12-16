@@ -5,14 +5,14 @@ get:
   tags:
     - Timeoff
   parameters:
-    - $ref: ../parameters/requestIdParamPath.yaml
+    - $ref: ../components/parameters/requestIdParamPath.yml
   responses:
     '200':
       description: Success!
       content:
         application/json:
           schema:
-            $ref: ../schemas/Timeoff.yaml
+            $ref: ../components/schemas/Timeoff.yml
     '400':
       description: Bad Request!
 delete:
@@ -22,11 +22,11 @@ delete:
   tags:
     - Timeoff
   parameters:
-    - $ref: ../parameters/requestIdParamPath.yaml
+    - $ref: ../components/parameters/requestIdParamPath.yml
   responses:
     '204':
       description: Request deleted!
       content:
         application/json:
           schema:
-            $ref: ../schemas/Timeoff.yaml
+            $ref: ../components/schemas/Timeoff.yml

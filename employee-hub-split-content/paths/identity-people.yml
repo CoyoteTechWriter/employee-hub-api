@@ -7,17 +7,17 @@ get:
   security:
     - BearerAuth: []
   parameters:
-    - $ref: ../parameters/employeeIdParam.yaml
-    - $ref: ../parameters/employeePhotoParam.yaml
-    - $ref: ../parameters/officeLocationParam.yaml
-    - $ref: ../parameters/employeePronounsParam.yaml
+    - $ref: ../components/parameters/employeeIdParam.yml
+    - $ref: ../components/parameters/employeePhotoParam.yml
+    - $ref: ../components/parameters/officeLocationParam.yml
+    - $ref: ../components/parameters/employeePronounsParam.yml
   responses:
     '200':
       description: Success!
       content:
         application/json:
           schema:
-            $ref: ../schemas/IdentityPeople.yaml
+            $ref: ../components/schemas/IdentityPeople.yml
     '400':
       description: Bad Request!
 post:
@@ -27,7 +27,7 @@ post:
   tags:
     - Employee identity
   requestBody:
-    $ref: '#/components/requestBodies/IdentityPeopleReqBod'
+    $ref: ../components/requestBodies/IdentityPeopleReqBod.yml
   responses:
     '201':
       description: Posted successfuly!

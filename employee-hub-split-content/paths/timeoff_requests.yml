@@ -5,18 +5,18 @@ get:
   tags:
     - Timeoff
   parameters:
-    - $ref: ../parameters/requestId.yaml
-    - $ref: ../parameters/timeoffStartDate.yaml
-    - $ref: ../parameters/timeoffFinnishDate.yaml
-    - $ref: ../parameters/timeoffType.yaml
-    - $ref: ../parameters/managerApproval.yaml
+    - $ref: ../components/parameters/requestId.yml
+    - $ref: ../components/parameters/timeoffStartDate.yml
+    - $ref: ../components/parameters/timeoffFinnishDate.yml
+    - $ref: ../components/parameters/timeoffType.yml
+    - $ref: ../components/parameters/managerApproval.yml
   responses:
     '200':
       description: Timeoff retrieved
       content:
         application/json:
           schema:
-            $ref: ../schemas/Timeoff.yaml
+            $ref: ../components/schemas/Timeoff.yml
     '400':
       description: Bad Request!
 post:
@@ -29,7 +29,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../schemas/Timeoff.yaml
+          $ref: ../components/schemas/Timeoff.yml
   responses:
     '201':
       description: Posted successfuly
