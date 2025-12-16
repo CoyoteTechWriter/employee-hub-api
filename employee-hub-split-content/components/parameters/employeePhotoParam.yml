@@ -1,0 +1,6 @@
+name: employeePhotoParam
+in: query
+schema:
+  type: string
+  format: uri
+  example: https://example.com/image_1.jpg

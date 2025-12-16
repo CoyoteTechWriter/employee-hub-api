@@ -1,0 +1,9 @@
+name: timeoffType
+in: query
+schema:
+  type: string
+  enum:
+    - Sick leave
+    - Holiday
+    - Wedding/Funeral
+  example: Sick leave

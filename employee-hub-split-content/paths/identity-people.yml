@@ -1,0 +1,42 @@
+get:
+  summary: Get employee
+  description: Getting employee data
+  operationId: getEmployeeId
+  tags:
+    - Employee identity
+  security:
+    - BearerAuth: []
+  parameters:
+    - $ref: ../components/parameters/employeeIdParam.yml
+    - $ref: ../components/parameters/employeePhotoParam.yml
+    - $ref: ../components/parameters/officeLocationParam.yml
+    - $ref: ../components/parameters/employeePronounsParam.yml
+  responses:
+    '200':
+      description: Success!
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/IdentityPeople.yml
+    '400':
+      description: Bad Request!
+post:
+  summary: Post employee
+  description: Post employee to the API based on request body
+  operationId: postEmployee
+  tags:
+    - Employee identity
+  requestBody:
+    $ref: ../components/requestBodies/IdentityPeopleReqBod.yml
+  responses:
+    '201':
+      description: Posted successfuly!
+      headers:
+        File Location:
+          description: Location of the posted employee file
+          schema:
+            type: string
+            format: uri
+            example: https://example.com/employees/1234
+    '400':
+      description: Bad Request!

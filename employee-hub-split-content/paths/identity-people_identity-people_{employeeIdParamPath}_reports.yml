@@ -1,0 +1,17 @@
+get:
+  summary: Get employee reports
+  description: Get employee reports by employee Id
+  operationId: getEmployeeReportsById
+  tags:
+    - Employee identity
+  parameters:
+    - $ref: ../components/parameters/employeeIdParamPath.yml
+  responses:
+    '200':
+      description: Employee found!
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/IdentityPeopleReports.yml
+    '400':
+      description: Bad Request!
